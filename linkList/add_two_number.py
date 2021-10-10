@@ -5,7 +5,10 @@ class ListNode:
         self.val = val
         self.next = next
 
-
+'''
+Time complexity O(n) -> we iterate every element one ones
+Space complexity O(n) -> because we are storing result in a link list 
+'''
 def solve(l1, l2):
     result = ListNode(0)
     curr = result
