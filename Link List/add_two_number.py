@@ -9,7 +9,7 @@ class ListNode:
 Time complexity O(n) -> we iterate every element one ones
 Space complexity O(n) -> because we are storing result in a link list 
 '''
-def solve(l1, l2):
+def solve(l1, l2) -> ListNode():
     result = ListNode(0)
     curr = result
     carry = 0
@@ -65,4 +65,10 @@ if __name__ == "__main__":
         curr = curr.next
     l2 = l2.next
 
-    solve(l1, l2)
+    r = solve(l1, l2)
+    while r:
+        if r.next:
+            print(r.val, end=",")
+        else:
+            print(r.val)
+        r = r.next
