@@ -1,0 +1,1 @@
+{"name":"Local: merge_two_sorted_list","url":"d:\\Documents\\Coding\\DSA\\merge_two_sorted_list.py","tests":[{"id":1633966725906,"input":"1,2,4\n1,3,3","output":"1,1,2,3,4,4"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Documents\\Coding\\DSA\\merge_two_sorted_list.py","group":"local","local":true}
