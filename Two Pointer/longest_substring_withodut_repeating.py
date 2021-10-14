@@ -2,13 +2,14 @@
 
 '''
 Time complexity O(n)
-Space complexity O()
+Space complexity O(n)
 '''
-def solve():
+def solve(s: str) -> int:
     
-    return
+    return 
 
 
 # !driver code
 if __name__ == "__main__":
-    solve()
+    s = input()
+    print(solve(s))
