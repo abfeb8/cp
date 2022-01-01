@@ -1,1 +1,0 @@
-{"name":"Local: two_sum","url":"d:\\Documents\\Coding\\DSA\\two_sum.py","tests":[{"id":1633800181349,"input":"2,7,11,15\n9","output":"[0, 1]"},{"id":1633801035588,"input":"3,2,4\n6","output":"[1, 2]"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Documents\\Coding\\DSA\\two_sum.py","group":"local","local":true}
