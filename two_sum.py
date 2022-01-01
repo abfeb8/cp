@@ -11,7 +11,7 @@ def solve(nums=[], target=int()) -> list():
     # iterating over the nums
     for i, n in enumerate(nums):
         rem = target-n
-        # checking if reminder is in check then returning theri index
+        # checking if reminder is in check then returning their index
         # else adding number and its indext in check
         if rem in check:
             return [check[rem], i]
