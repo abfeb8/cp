@@ -3,8 +3,8 @@ Time complexity O(N)
 Space complexity O(1)
 '''
 def solve(x:int):
-    min = -2**31
-    max = 2**31-1
+    min = -2147483648
+    max = 2147483647
     if(x>=0):
         s = int(str(x)[::-1])
         if s>max:
