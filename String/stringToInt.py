@@ -29,13 +29,14 @@ def solve(s: str):
 
     # Convert these digits into an integer (i.e. "123" -> 123, "0032" -> 32).
     # If no digits were read, then the integer is 0. Change the sign as necessary (from step 2).
-    if(len(s)>0):
+    if(len(s) > 0):
         if(not isPositive):
             s = int(s)*-1
         else:
             s = int(s)
     else:
         return 0
+        
     # If the integer is out of the 32-bit signed integer range [-2^31, 2^31 - 1], then clamp the integer so that it remains in the range.
     # Specifically, integers less than -2^31 should be clamped to -2^31, and integers greater than 231 - 1 should be clamped to 231 - 1.
     min = -2147483648
