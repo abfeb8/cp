@@ -1,8 +1,8 @@
 # https://leetcode.com/problems/remove-element/
 
 '''
-Time complexity O(n)
-Space complexity O()
+Time complexity O(N)
+Space complexity O(1)
 '''
 
 
