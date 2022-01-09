@@ -1,8 +1,8 @@
 # Problem: https://leetcode.com/problems/reshape-the-matrix/
 
 '''
-Time complexity O(N) -> every element is visited only ones
-Space complexity O(2N) -> storing result and temp arr
+Time complexity O(N*M) -> every element is visited only ones
+Space complexity O(2N*M) -> storing result and flat array
 '''
 
 
@@ -11,23 +11,16 @@ def solve(mat: list, r: int, c: int) -> list:
     if (r*c != len(mat)*len(mat[0])):
         return mat
 
-    result = []  
-    temp = []
-
+    flat = []
     for arr in mat:
         for ele in arr:
-            print(ele)
-            if len(temp)==c:
-                result.append(temp.copy())
-                # print(result)
-                temp.clear()
-                temp.append(ele)
-            else:
-                temp.append(ele)
-                # print(temp)
-    
-    result.append(temp)
-    # print(result)
+            flat.append(ele)
+ 
+    result = []
+    for i in range(r):
+        print(i*c,i*c+c)
+        result.append(flat[i*c:i*c+c])
+
     return result
 
 
