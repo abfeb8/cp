@@ -1,4 +1,4 @@
-# Problem:
+# Problem: https://leetcode.com/problems/pascals-triangle/
 
 '''
 Time complexity O(N^2)
