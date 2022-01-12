@@ -1,8 +1,8 @@
 # Problem: https://leetcode.com/problems/search-a-2d-matrix/
 
 '''
-Time complexity O(n)
-Space complexity O()
+Time complexity O(log(N*M))
+Space complexity O(1)
 '''
 
 
@@ -12,7 +12,7 @@ def solve(matrix: list, target: int) -> bool:
     m = len(matrix[0])
     left = 0
     right = m*n-1
-    print(left, right)
+    # print(left, right)
     while(left <= right):
         mid = (left+right)//2
         # print(mid//m, mid % m)
