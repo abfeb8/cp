@@ -6,9 +6,6 @@ Space complexity O(N)
 '''
 
 
-from platform import node
-
-
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
@@ -23,7 +20,7 @@ def preorderTraversal(root: TreeNode) -> list[int]:
     result = []
     if root:
         result.extend(preorderTraversal(root.left))
-        result.append(root.val)       
+        result.append(root.val)
         result.extend(preorderTraversal(root.right))
     return result
 
