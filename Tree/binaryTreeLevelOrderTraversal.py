@@ -1,8 +1,8 @@
 # Problem: https://leetcode.com/problems/binary-tree-level-order-traversal/
 
 '''
-Time complexity O(n)
-Space complexity O()
+Time complexity O(N)
+Space complexity O(M**2) -> M is depth of tree
 '''
 
 
