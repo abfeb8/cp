@@ -19,25 +19,9 @@ class TreeNode:
 
 
 def maxDepth(root: TreeNode) -> int:
-
-    def getDepth(root: TreeNode, currDepth=0) -> int:
-        # if root is null return 0
-        if not root:
-            return 0
-        # if we hit leaf node return 1
-        if not (root.left or root.right):
-            return currDepth+1
-        currDepth += 1
-        if root.right and root.left:
-            currDepth = max(getDepth(root.left, currDepth),
-                            getDepth(root.right, currDepth))
-        elif root.right:
-            currDepth = getDepth(root.right, currDepth)
-        elif root.left:
-            currDepth = getDepth(root.left, currDepth)
-        return currDepth
-
-    return getDepth(root)
+    if not root:
+        return 0
+    return max(maxDepth(root.left), maxDepth(root.right)) + 1
 
 
 # !driver code
