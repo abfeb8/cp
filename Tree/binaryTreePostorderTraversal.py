@@ -6,9 +6,6 @@ Space complexity O(N)
 '''
 
 
-from platform import node
-
-
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
