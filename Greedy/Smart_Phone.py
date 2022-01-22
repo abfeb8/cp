@@ -1,8 +1,8 @@
 # Problem: https://www.codechef.com/LRNDSA01/problems/ZCO14003
 
 '''
-Time complexity O(n)
-Space complexity O()
+Time complexity O(Nlog(N)) -> sorting array 
+Space complexity O(N) -> storing array of N elements
 '''
 
 
