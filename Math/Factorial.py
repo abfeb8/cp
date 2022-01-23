@@ -1,20 +1,18 @@
 # Problem: https://www.codechef.com/LRNDSA01/problems/FCTRL
 
 '''
-Time complexity O(N) 
-Space complexity O(N)
+Time complexity O(log5(N))
+Space complexity O(1)
 '''
 
 
 def solve():
     n = int(input())
-    arr = list(map(int, input().split()))
-    currMax = arr[0]
     count = 0
-    for i in arr:
-        if i <= currMax:
-            count += 1
-            currMax = min(currMax, i)
+    curr = 5
+    while (curr <= n):
+        count += (n//curr)
+        curr *= 5
     return count
 
 
