@@ -1,41 +1,41 @@
 # https://leetcode.com/problems/next-permutation/
 
 '''
-Time complexity O(n^2)
+Time complexity O(n)
 Space complexity O(1)
 '''
 
 
 def swap(nums, a, b):
-    temp = nums[a]
-    nums[a] = nums[b]
-    nums[b] = temp
+    nums[a], nums[b] = nums[b], nums[a]
 
 
 def nextPermutation(nums: list[int]) -> None:
     n = len(nums)
-    swapIndexR = n-1
-    swapIndexL = -1
-    isSwaped = False
+    k = n-2
+    l = n-1
 
-    p1 = n-1
-    while(p1 > swapIndexL):
-        for i in range(p1-1, swapIndexL-1, -1):
-            if(nums[p1] > nums[i]):
-                isSwaped = True
-                if(swapIndexL < i):
-                    # print(i,p1)
-                    swapIndexL = i
-                    swapIndexR = p1
-        p1 -= 1
-    if(isSwaped):
-        # print(swapIndexR, swapIndexL)
-        swap(nums, swapIndexR, swapIndexL)
-        for i, n in enumerate(sorted(nums[swapIndexL+1:])):
-            nums[swapIndexL+1+i] = n
+    while(k >= 0):
+        if(nums[k] < nums[k+1]):
+            break
+        k -= 1
+
+    if(k < 0):
+        for i, n in enumerate(nums[::-1]):
+            nums[i] = n
     else:
-        for i in range(n//2):
-            swap(nums, i, n-1-i)
+        while(l > k):
+            if(nums[k] < nums[l]):
+                break
+            l -= 1
+
+        swap(nums, k, l)
+        m = n-1
+        k += 1
+        while(k < m):
+            nums[k], nums[m] = nums[m], nums[k]
+            k += 1
+            m -= 1
 
 
 # !driver code
