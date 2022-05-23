@@ -1,14 +1,22 @@
 class Solution {
+    int[] cache;
     public int countSubstrings(String s) {
         char[] arr = s.toCharArray();
-        int result = arr.length;
-        
-        for(int i = 1; i<=arr.length; i++){
-            for(int l = 0; l < (arr.length-i); l++){
-                if(isPalindrome(l, l+i, arr))
-                    result++;
-            }
+        cache = new int[arr.length+1];
+        for(int len = 1; len <= arr.length; len++){
+            cache[len] = cache[len-1] + countNewPalindrom(arr, len);
         }
+        return cache[arr.length];
+    }
+    
+    private int countNewPalindrom(char[] arr, int end){
+        int result = 0;
+        
+        for(int start = 0; start < end; start++){
+            if(isPalindrome(start, end-1, arr))
+                result++;
+        }
+        
         return result;
     }
     
