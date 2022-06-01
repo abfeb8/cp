@@ -7,12 +7,16 @@ class Solution {
         }
         
         boolean[] arr = new boolean[n+1];
+        var set = new HashSet<String>();
         // System.out.println(n);
         
         int l = s.length();
         for(int i = 0; i<=l-k; i++){
-            // System.out.println(s.substring(i, i+k)+"->"+Integer.parseInt(s.substring(i, i+k), 2));
-            arr[Integer.parseInt(s.substring(i, i+k), 2)] = true;
+            String tempS = s.substring(i, i+k);
+            if(!set.contains(tempS)){
+                set.add(tempS);
+                arr[Integer.parseInt(tempS, 2)] = true;
+            }    
         }
         
         for(boolean b : arr){
