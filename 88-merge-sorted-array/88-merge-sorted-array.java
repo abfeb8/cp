@@ -1,22 +1,20 @@
 class Solution {
     public void merge(int[] nums1, int m, int[] nums2, int n) {
-        var result = new int[m+n];
-        int p1 = 0, p2 = 0, i = 0;
         
-        while(p1<m && p2<n){
-            if(nums1[p1] < nums2[p2])
-                result[i++] = nums1[p1++];
-            else
-                result[i++] = nums2[p2++];
+        int p1 = m-1, p2 = n-1;
+        
+        for(int i = m+n-1; i>=0; i--){
+            if(p1>=0 && p2>=0){
+                if(nums1[p1] >= nums2[p2])
+                    nums1[i] = nums1[p1--];
+                else
+                    nums1[i] = nums2[p2--];
+            } else {
+                if(p1>=0)
+                    nums1[i] = nums1[p1--];
+                else if(p2>=0)
+                    nums1[i] = nums2[p2--];
+            } 
         }
-        
-        while(p1<m)
-             result[i++] = nums1[p1++];
-        
-        while(p2<n)
-            result[i++] = nums2[p2++];
-        
-        for(int j = 0; j<m+n; j++)
-            nums1[j] = result[j];
     }
 }
