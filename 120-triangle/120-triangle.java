@@ -3,21 +3,20 @@ class Solution {
     Map<String, Integer> cache = new HashMap<>(); 
     
     public int minimumTotal(List<List<Integer>> triangle) {
-        var dp = new ArrayList<List<Integer>>();
-        dp.add(triangle.get(0));
         
         int n = triangle.size();
         
+        int[] dp = new int[n];
+        dp[0] = triangle.get(0).get(0);
+        
         for(int r = 1; r<n; r++){
-            Integer[] arr = new Integer[r+1];
-            for(int c = 0; c<=r; c++){
-               arr[c] = Math.min(dp.get(r-1).get(Math.max(0, c-1)), dp.get(r-1).get(Math.min(r-1, c))) + triangle.get(r).get(c);
+            for(int c = r; c>=0; c--){
+               dp[c] = Math.min(dp[Math.max(0, c-1)], dp[Math.min(r-1, c)]) + triangle.get(r).get(c);
             }
-            dp.add(Arrays.asList(arr));
         }
         
         int result = Integer.MAX_VALUE;
-        for(int i : dp.get(n-1)){
+        for(int i : dp){
             result = Math.min(result, i);
         }
         
