@@ -36,38 +36,34 @@ class Solution {
     // Function to detect cycle in an undirected graph.
     public boolean isCycle(int V, ArrayList<ArrayList<Integer>> adj) {
         // Code here
-        // System.out.println(adj);
-        boolean[] isVisited = new boolean[V];
-        Deque<Node> q = new ArrayDeque<>();
-        for(int i = 0; i<V; i++){
-            if(!isVisited[i]){
-                isVisited[i] = true;
-                q.addLast(new Node(i, -1));
-                // System.out.println(q);
-                while(!q.isEmpty()){
-                    // System.out.println(adj.get(q.peek()));
-                    Node node = q.pollFirst();
-                    // System.out.printf(node.val + "-> ");
-                    for(int e : adj.get(node.val)){
-                        if(e == node.parent){
-                            continue;
-                        }
-                        // System.out.printf(e + " " );
-                        if(isVisited[e]){
-                            return true;
-                        }
-                        isVisited[e] = true;
-                        q.addLast(new Node(e, node.val));
-                        // System.out.println(q);
-                    }
-                    // System.out.println();
-                }
+        boolean[] visited = new boolean[V];
+        for(int i = 0;i<V; i++){
+            if(!visited[i])
+                if(helper(adj, visited, new Node(i, -1)))
+                    return true;
+        }
+        return false;
+    }
+    
+    private boolean helper(ArrayList<ArrayList<Integer>> adj, boolean[] visited, Node node){
+        if(visited[node.val]){
+            // System.out.println(node.val);
+            return true;
+        }
+        
+        visited[node.val] = true;
+        // System.out.printf(node.val + "->");
+        for(int e : adj.get(node.val)){
+            if( e != node.parent){
+                if (helper(adj, visited, new Node(e, node.val)))
+                    return true;
             }
         }
         
         return false;
     }
 }
+
 
 class Node {
     int val;
