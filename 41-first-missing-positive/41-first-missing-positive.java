@@ -1,26 +1,29 @@
 class Solution {
     public int firstMissingPositive(int[] nums) {
-        int p = 0; // pointer
         int n = nums.length;
-        while(p<n){
-            if(nums[p] != p+1 && nums[p] > 0 && nums[p] <= n && nums[p] != nums[nums[p]-1]){
-                swap(nums, p, nums[p]-1);
-                continue;
-            }
-            p++;
+        for(int i = 0; i<n; i++){
+            int curVal = nums[i];
+            if(curVal != i+1 && curVal>0 && curVal<(n+1)) {
+                if(curVal > i+1){
+                    while(curVal != i+1 && curVal>0 && curVal<(n+1)){
+                        if(nums[i] == nums[curVal-1])
+                            break;
+                        nums[i] = nums[curVal-1];
+                        nums[curVal-1] = curVal;
+                        curVal = nums[i];
+                    }
+                } else {
+                    nums[curVal-1] = curVal;
+                }
+            } 
         }
         
-        for(int i = 0; i<n; i++){
-            if(nums[i] != i+1)
-                return i+1;
+        for(int i = 1; i<=n; i++){
+            if (i!=nums[i-1]){
+                return i;
+            }
         }
         
         return n+1;
-    }
-    
-    private void swap(int[] nums, int a, int b){
-        int temp = nums[b];
-        nums[b] = nums[a];
-        nums[a] = temp;
     }
 }
