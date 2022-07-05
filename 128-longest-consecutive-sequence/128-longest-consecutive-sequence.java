@@ -5,23 +5,22 @@ class Solution {
             set.add(i);
         }
         
-        var processed = new HashMap<Integer, Integer>();
+        var processed = new HashSet<Integer>();
         
         int result = 0;
         for(int i : nums){
-            if(!processed.containsKey(i)){
-                int count = 0, curVal = i;
-                while(set.contains(curVal)){
-                    if(processed.containsKey(curVal)){
-                        count += processed.get(curVal);
-                        result = Math.max(result, count);
-                        break;
-                    }
-                    count++;
-                    curVal++;
+            if(set.contains(i)){
+                set.remove(i);
+                int left = i, right = i;
+                while(set.contains(left-1)){
+                    set.remove(left);
+                    left--;
                 }
-                processed.put(i, count);
-                result = Math.max(result, count);
+                while(set.contains(right+1)){
+                    set.remove(right);
+                    right++;
+                }
+                result = Math.max(result, right-left+1);
             }
         }
         
