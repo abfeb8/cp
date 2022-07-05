@@ -5,17 +5,22 @@ class Solution {
             set.add(i);
         }
         
-        var processed = new HashSet<Integer>();
+        var processed = new HashMap<Integer, Integer>();
         
         int result = 0;
         for(int i : nums){
-            if(!processed.contains(i)){
+            if(!processed.containsKey(i)){
                 int count = 0, curVal = i;
                 while(set.contains(curVal)){
-                    processed.add(curVal);
+                    if(processed.containsKey(curVal)){
+                        count += processed.get(curVal);
+                        result = Math.max(result, count);
+                        break;
+                    }
                     count++;
                     curVal++;
                 }
+                processed.put(i, count);
                 result = Math.max(result, count);
             }
         }
