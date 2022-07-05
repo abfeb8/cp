@@ -5,8 +5,6 @@ class Solution {
             set.add(i);
         }
         
-        var processed = new HashSet<Integer>();
-        
         int result = 0;
         for(int i : nums){
             if(set.contains(i)){
