@@ -23,14 +23,13 @@ class Solution {
         q.add(root);
         while(!q.isEmpty()){
             int n = q.size();
+            list.add(q.peek().val);
             for(int i = 0; i<n; i++){
                 TreeNode curNode = q.poll();
-                if(curNode.left!=null) q.add(curNode.left);
                 if(curNode.right!=null) q.add(curNode.right);
-                if(i == n-1) list.add(curNode.val);
+                if(curNode.left!=null) q.add(curNode.left);
             }
         }
-        
         return list;
     }
 }
