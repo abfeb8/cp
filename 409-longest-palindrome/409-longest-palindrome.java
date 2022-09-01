@@ -1,8 +1,8 @@
 class Solution {
     public int longestPalindrome(String s) {
         int[] fr = new int[60];
-        for(int i = 0; i<s.length(); i++){
-            fr[s.charAt(i)-'A']++;
+        for(char c : s.toCharArray()){
+            fr[c-'A']++;
         }
         
         boolean isOddPresent = false;
