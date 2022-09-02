@@ -16,13 +16,13 @@
 class Solution {
     public List<Double> averageOfLevels(TreeNode root) {
         List<Double> result = new ArrayList<>();
-        Deque<TreeNode> q = new ArrayDeque<>();
+        Queue<TreeNode> q = new LinkedList<>();
         q.add(root);
         while(!q.isEmpty()){
             int n = q.size();
             double d = 0.0;
             for(int i = 0; i<n; i++){
-                TreeNode curNode = q.pollFirst();
+                TreeNode curNode = q.poll();
                 d+=curNode.val;
                 if(curNode.left != null) q.add(curNode.left);
                 if(curNode.right != null) q.add(curNode.right);
