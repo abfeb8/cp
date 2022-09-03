@@ -1,29 +1,38 @@
 class Solution {
-    String[] cache = new String[11];
+    int[][] map = new int[10][2];
     public int[] numsSameConsecDiff(int n, int k) {
-        Set<Integer> result = new HashSet<>();
+        fillMap(map, k);
+        List<String> result = new ArrayList<>();
         
-        for(int i = 1; i<10; i++)
-            helper(i, new String(), n, k, result);
-        
-        List<Integer> list = new ArrayList<>(result);
-        int[] array = new int[list.size()];
-        for(int i = 0; i<array.length; i++){
-            array[i] = list.get(i);
+        for(int i = 1; i<10; i++){
+            getNumbers(i, String.valueOf(i), n-1, result);
         }
-        return array;
+        
+        int[] arr = new int[result.size()];
+        for(int i = 0; i<arr.length; i++){
+            arr[i] = Integer.parseInt(result.get(i));
+        }
+        return arr;
     }
     
-    private void helper(int i, String s, int n, int k, Set<Integer> result) {
+    private void getNumbers(int i, String s, int n, List<String> result){
         if(i < 0 || i > 9)
             return;
         
-        if(n == 0){
-            result.add(Integer.valueOf(s));
+        if(n == 0) {
+            result.add(s);
             return;
         }
         
-        helper(i-k, new String(s + String.valueOf(i)), n-1, k, result);
-        helper(i+k, new String(s + String.valueOf(i)), n-1, k, result);
+        for(int num : map[i]){
+            getNumbers(num, new String(s + String.valueOf(num)), n-1, result);
+        }
+    }
+    
+    private void fillMap(int[][] map, int k){
+        for(int i = 0; i<10; i++){
+            map[i][0] = i-k;
+            map[i][1] = i+k == i ? -1 : i+k;
+        }
     }
 }
