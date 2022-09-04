@@ -8,11 +8,7 @@ class Solution {
             getNumbers(i, String.valueOf(i), n-1, result);
         }
         
-        int[] arr = new int[result.size()];
-        for(int i = 0; i<arr.length; i++){
-            arr[i] = Integer.parseInt(result.get(i));
-        }
-        return arr;
+        return result.stream().mapToInt(s -> Integer.valueOf(s)).toArray();
     }
     
     private void getNumbers(int i, String s, int n, List<String> result){
