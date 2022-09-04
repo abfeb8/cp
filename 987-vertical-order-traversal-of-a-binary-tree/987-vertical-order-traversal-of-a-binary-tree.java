@@ -1,19 +1,5 @@
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
- */
 class Solution {
+    
     class Node {
         int val;
         int row;
@@ -22,32 +8,32 @@ class Solution {
             this.row = row;
         }
     }
+    
     public List<List<Integer>> verticalTraversal(TreeNode root) {
-        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        // {-1 : [Node(9, 1)], 0 : [Node(3, 0), Node(15, 2)], 1 : [Node(20, 1)], 2 : [Node(7, 2)]}
         Map<Integer, List<Node>> map = new TreeMap<>();
-        
-        helper(root, 0, 0, map);
-        
-        for(int k : map.keySet()){
-            result.add(map.get(k).stream()
-                       .sorted((n1, n2) -> n1.row-n2.row != 0 ? 
-                               n1.row-n2.row : n1.val - n2.val)
-                       .map(n -> n.val)
-                       .toList());
-        }
-        
-        return result;
+        mapNodeToCol(root, 0, 0, map);
+
+        return map.keySet().stream()
+            .map(k -> customSort(map.get(k)))
+            .toList();
     }
     
-    private void helper(TreeNode node, int r, int c, Map<Integer, List<Node>> map){
+    private List<Integer> customSort(List<Node> list){
+        return list.stream()
+            .sorted((n1, n2) -> n1.row-n2.row != 0 ? n1.row-n2.row : n1.val-n2.val)
+            .map(n -> n.val)
+            .toList();
+    }
+    
+    private void mapNodeToCol(TreeNode node, int r, int c, Map<Integer, List<Node>> map) {
         if(node == null)
             return;
         
         map.putIfAbsent(c, new ArrayList<Node>());
         map.get(c).add(new Node(node.val, r));
         
-        helper(node.left, r+1, c-1, map);
-        helper(node.right, r+1, c+1, map);
-        
+        mapNodeToCol(node.left, r+1, c-1, map);
+        mapNodeToCol(node.right, r+1, c+1, map);
     }
 }
