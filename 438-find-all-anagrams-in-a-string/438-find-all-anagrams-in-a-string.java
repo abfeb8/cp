@@ -19,11 +19,12 @@ class Solution {
         if(isAnagram(frP, word))
             result.add(0);
         
-        for(int l = 0, r = p.length(); r<s.length(); l++, r++){
-            word[s.charAt(l)-'a']--;
-            word[s.charAt(r)-'a']++;
+        int l = 0, r = p.length();
+        while(r<s.length()){
+            word[s.charAt(l++)-'a']--;
+            word[s.charAt(r++)-'a']++;
             if(isAnagram(frP, word))
-                result.add(l+1);
+                result.add(l);
         }
         
         return result;
