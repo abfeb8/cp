@@ -21,24 +21,24 @@ class Solution {
         return result[0];
     }
     
-    private int helper(TreeNode node, int[] result, int[] freq){
+    private void helper(TreeNode node, int[] result, int[] freq){
         if(node == null){
-            return 0;
+            return;
         }
+        
+        freq[node.val]++;
         if(node.left == null && node.right == null){
-            freq[node.val]++;
             if(isPartiy(freq)) 
                 result[0]++;
-            return node.val;
         }
         
         // System.out.println(node.val);
         
-        freq[node.val]++;
-        freq[helper(node.left, result, freq)]--;
-        freq[helper(node.right, result, freq)]--;
         
-        return node.val;
+        helper(node.left, result, freq);
+        helper(node.right, result, freq);
+        
+        freq[node.val]--;
     }
     
     private boolean isPartiy(int[] freq){
