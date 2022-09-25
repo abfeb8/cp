@@ -9,6 +9,11 @@ class Solution {
         }
         
         int[] visited = new int[numCourses];
+        /* visited
+        0 -> not visited
+        1 -> toposort is in process
+        2 -> toposort done
+        */
         Stack<Integer> stack = new Stack<>();
         for(int i = 0; i<numCourses; i++){
             if(visited[i] == 0 && !hasCycle){
